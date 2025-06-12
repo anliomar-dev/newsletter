@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lancement Prochain 🎉</title>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@3.8.3/dist/full.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="min-h-screen bg-gradient-to-r from-purple-500 via-pink-500 to-red-500 flex items-center justify-center text-white">
+
+    <!-- Form Container -->
+    <div class="bg-white text-gray-900 rounded-2xl shadow-xl p-10 w-full max-w-lg text-center space-y-6">
+      <h1 class="text-4xl font-bold">🚀 Notre plateforme arrive bientôt !</h1>
+      <p class="text-lg">Laissez-nous votre email pour être averti dès le lancement !</p>
+
+      <form id="notifyForm" class="flex flex-col sm:flex-row gap-4 items-center justify-center">
+        <input id="emailInput" type="email" placeholder="Votre adresse e-mail" class="input input-bordered w-full sm:w-auto" required />
+        <button type="submit" class="btn btn-primary">Prévenez-moi</button>
+      </form>
+
+      <p class="text-sm text-gray-500">Pas de spam, promis ✋</p>
+    </div>
+
+    <!-- Toast Container -->
+    <div id="toast" class="toast toast-top toast-center hidden z-50">
+      <div class="alert alert-success">
+        <span>Merci ! Vous serez informé dès le lancement 🎉</span>
+      </div>
+    </div>
+
+    <!-- Script -->
+    <script>
+      const form = document.getElementById("notifyForm");
+      const toast = document.getElementById("toast");
+      const emailInput = document.getElementById("emailInput");
+
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+
+        if (emailInput.checkValidity()) {
+          toast.classList.remove("hidden");
+
+          setTimeout(() => {
+            toast.classList.add("hidden");
+          }, 5000);
+
+          form.reset();
+        }
+      });
+    </script>
+  </body>
+</html>
