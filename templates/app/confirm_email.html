@@ -31,23 +31,12 @@
 
     <!-- Script -->
     <script>
-      const form = document.getElementById("notifyForm");
       const toast = document.getElementById("toast");
-      const emailInput = document.getElementById("emailInput");
-
-      form.addEventListener("submit", (e) => {
-        e.preventDefault();
-
-        if (emailInput.checkValidity()) {
-          toast.classList.remove("hidden");
-
+      if(toast){
           setTimeout(() => {
             toast.classList.add("hidden");
           }, 5000);
-
-          form.reset();
-        }
-      });
+      }
     </script>
   </body>
 </html>
