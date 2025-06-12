@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lancement Prochain 🎉</title>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@3.8.3/dist/full.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="min-h-screen bg-gradient-to-r from-purple-500 via-pink-500 to-red-500 flex items-center justify-center text-white">
+
+    <!-- Form Container -->
+    <div class="bg-white text-gray-900 rounded-2xl shadow-xl p-8 w-full max-w-lg text-center space-y-8">
+      <h1 class="text-3xl font-bold text-primary">🚀 Notre plateforme arrive bientôt !</h1>
+      <p class="text-lg">Laissez-nous votre email pour être averti dès le lancement !</p>
+
+      <form action={% url 'app:submit_email' %} method="post"
+            class="flex flex-col sm:flex-row gap-4 items-center justify-center"
+      >
+          {% csrf_token %}
+        <input id="emailInput" type="email" name="email" placeholder="Votre adresse e-mail" class="input input-bordered w-full sm:w-auto" required />
+        <button type="submit" class="btn btn-primary">Prévenez-moi</button>
+      </form>
+
+      <p class="text-sm text-gray-500">Pas de spam, promis ✋</p>
+    </div>
+
+    {% if message %}
+        <!-- Toast Container -->
+        <div id="toast" class="toast toast-top toast-center z-50">
+          <div class="alert alert-info">
+            <span>{{ message }}</span>
+          </div>
+        </div>
+    {% elif error %}
+        <div id="toast" class="toast toast-top toast-center z-50">
+          <div class="alert alert-error">
+            <span>{{ error }}</span>
+          </div>
+        </div>
+    {% endif %}
+
+    <!-- Script -->
+    <script>
+      const toast = document.getElementById("toast");
+      if(toast){
+          setTimeout(() => {
+            toast.classList.add("hidden");
+          }, 5000);
+      }
+    </script>
+  </body>
+</html>

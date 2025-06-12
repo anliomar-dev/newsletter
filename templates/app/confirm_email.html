@@ -3,40 +3,28 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Lancement Prochain 🎉</title>
-    <link href="https://cdn.jsdelivr.net/npm/daisyui@3.8.3/dist/full.css" rel="stylesheet" type="text/css" />
+    <title>Confirmation</title>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@3.8.3/dist/full.css" rel="stylesheet" />
     <script src="https://cdn.tailwindcss.com"></script>
   </head>
-  <body class="min-h-screen bg-gradient-to-r from-purple-500 via-pink-500 to-red-500 flex items-center justify-center text-white">
+  <body class="min-h-screen bg-gradient-to-r from-green-400 via-emerald-500 to-lime-500 flex items-center justify-center text-white">
 
-    <!-- Form Container -->
+    <!-- Confirmation Container -->
     <div class="bg-white text-gray-900 rounded-2xl shadow-xl p-10 w-full max-w-lg text-center space-y-6">
-      <h1 class="text-4xl font-bold">🚀 Notre plateforme arrive bientôt !</h1>
-      <p class="text-lg">Laissez-nous votre email pour être averti dès le lancement !</p>
+      <h1 class="text-3xl font-bold text-success">✅ Confirmation</h1>
 
-      <form id="notifyForm" class="flex flex-col sm:flex-row gap-4 items-center justify-center">
-        <input id="emailInput" type="email" placeholder="Votre adresse e-mail" class="input input-bordered w-full sm:w-auto" required />
-        <button type="submit" class="btn btn-primary">Prévenez-moi</button>
-      </form>
+      {% if verified  %}
+        <div class="alert alert-success shadow-lg">
+          <span>{{ message }}</span>
+        </div>
+      {% else %}
+        <div class="alert alert-error shadow-lg">
+          <span>{{ message }}</span>
+        </div>
+      {% endif %}
 
-      <p class="text-sm text-gray-500">Pas de spam, promis ✋</p>
+      <a href="/" class="btn btn-success mt-4">Retour à l'accueil</a>
     </div>
 
-    <!-- Toast Container -->
-    <div id="toast" class="toast toast-top toast-center hidden z-50">
-      <div class="alert alert-success">
-        <span>Merci ! Vous serez informé dès le lancement 🎉</span>
-      </div>
-    </div>
-
-    <!-- Script -->
-    <script>
-      const toast = document.getElementById("toast");
-      if(toast){
-          setTimeout(() => {
-            toast.classList.add("hidden");
-          }, 5000);
-      }
-    </script>
   </body>
 </html>
