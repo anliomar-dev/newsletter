@@ -51,6 +51,14 @@ else:
     DEFAULT_FROM_EMAIL = config('DEFAULT_FROM_EMAIL')
 
 
+if not DEBUG:
+    SECURE_HSTS_SECONDS = config('SECURE_HSTS_SECONDS', cast=int)
+    SECURE_SSL_REDIRECT = config('SECURE_SSL_REDIRECT', cast=bool)
+    SESSION_COOKIE_SECURE = config('SESSION_COOKIE_SECURE', cast=bool)
+    CSRF_COOKIE_SECURE = config('CSRF_COOKIE_SECURE', cast=bool)
+    SECURE_HSTS_INCLUDE_SUBDOMAINS = config('SECURE_HSTS_INCLUDE_SUBDOMAINS', cast=bool)
+    SECURE_HSTS_PRELOAD = config('SECURE_HSTS_PRELOAD', cast=bool)
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -156,6 +164,15 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static')
 ]
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+STORAGES = {
+    "default": {
+        "BACKEND": "django.contrib.staticfiles.storage.StaticFilesStorage",
+    },
+    "staticfiles": {
+        "BACKEND": "django.contrib.staticfiles.storage.StaticFilesStorage",
+    },
+}
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
